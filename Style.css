@@ -1,0 +1,31 @@
+html{
+    background-color: white;
+}
+
+#header {
+    width: 100%;
+    height: ;
+    align-self: center; 
+    align-items: left;
+    background-color: orange;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; 
+}
+
+#left-side {
+    width: 20%;
+    align-self: center;
+    align-items: left;
+}
+
+#center {
+    width: 80%;
+    align-self: center;
+    
+}
+
+#right-side {
+    width: 20%;
+    align-self: center;
+    align-items: center;
+}
