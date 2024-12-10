@@ -1,0 +1,143 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Style.css">
+    <title> DNS </title>
+    <script src="C:/Github/Web/Scripts/Search.js"></script> 
+</head>
+<body>
+    <div id="main"> 
+        <div class="header">
+            <div class="header_logo">
+                <img src="C:/Github/Web/Content/Logo.png">
+            </div>
+            <div class="header_container">
+                <nav class="header_menu">
+                    <ul>   
+                        <li> <a href="Sales.html">Акции              </a> </li>
+                        <li> <a href="Refund.html">Возврат        </a> </li> 
+                        <li> <a href="Delivery.html">Доставка           </a> </li> 
+                        <li> <a href="Vacancy.html">Вакансии           </a> </li>
+                    </ul>   
+                </nav>
+                <div class="search">
+                    <form action="" method="get" onsubmit="findText(event)"> 
+                        <input id="search-input" placeholder="Искать..." type="text">
+                        <button onclick="findText()">Поиск</button> 
+                    </form>
+                </div>
+                <div class="login-form">
+                    <div class="Button">
+                        <form action = "Login.html">
+                            <div> <input type="submit" value="Войти">      </div>
+                        </form>
+                        <form action = "Registration.html">
+                            <div> <input type="submit" value="Регистрация">      </div>
+                        </form>
+                        <form action = "Cart.html">
+                            <div> <input type="submit" value="Корзина">      </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="header_logo">
+
+            </div>
+        </div>
+        
+        <div class="container">
+            <div id="left-side">
+                <nav class="left-side_menu">
+                    <ul>   
+                        <li> <a href="Index.html">Главная        </a> </li>
+                        <li> <a href="Catalog.html">Каталог        </a> </li> 
+                        <li> <a href="Contacts.html">Контакты       </a> </li> 
+                        <li> <a href="AboutUs.html">О нас          </a> </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div id="center">
+                <div class="center_content">
+                    <H2  align="center">Продажа сертифицированной техники</H2>
+                            <p style="text-align:justify">
+                                Магазин DNS предоставляет покупателям возможность приобретать различную технику. Наш магазин находится на рынке уже не первый год и имеет большой ассортимент различных видов техники:                        
+                            </p>
+                            <table border="3" cellpadding="10" cellspacing="5">
+                                <tr>
+                                    <td colspan=2 align="center">Бытовая техника</td>
+                                    <td colspan=2 align="center">Электроника</td>
+                                </tr>
+                                <tr>
+                                    <td>Холодильники</td>
+                                    <td>Стиральные <BR> машины</td>
+                                    <td>Компьютеры</td>
+                                    <td>Смартфоны</td>
+                                </tr>
+                                <tr>
+                                    <td>Кухонные плиты</td>
+                                    <td>Посудомоечные <BR> машины</td>
+                                    <td>Смарт-часы</td>
+                                    <td>Ноутбуки</td>
+                                </tr>
+                            </table>
+
+                            <H2  align="center">Преимущества магазина</H2>
+                            <p style="text-align:justify">
+                                Наш магазин имеет большое количество преимуществ:
+                                        <li> Широкая сеть магазинов
+                                        <li> Гарантия низкой цены
+                                        <li> Большое количество фильтров
+                                        <li> Сервисное и гарантийное обслуживание в кратчайшие сроки
+                                        <li> Профессиональные консультанты
+                                        <li> Вежливый персонал
+                                            
+                                    </ul>
+                            </p>
+                            <h2 align="center"> Гарантия качества </h2>
+                            <p style="text-align:justify">  
+                                Наш магазин продаёт только орригинальные товары с гарантией от продавца. В случае, если покупатель получает некачественный товар, мы обязуемся: <BR>
+                            </p>
+                            <ol type="1">
+                                <li>Принять товар в сервисный центр
+                                </li>
+                                <li> Осуществить проверку товара                               
+                                <li> Осуществить компенсацию в случае подтверждения неисправности
+                                    <ol type="a">
+                                        <li>Возврат средств за товар
+                                        </li>
+                                        <li>Замена товара на аналогичный
+                                        </li>
+                                        <li>Ремонт неисправности
+                                        </li>
+                                    </ol>
+                            </ol>
+                        
+                            <h2 align="center"> Гарантия низкой цены </h2>
+                            <p style="text-align:justify">  
+                                Магазин DNS гарантирует низкую цену в сравнении с магазинами-конкурентами. Если цена в нашем магазине выше, чем в другом, вы можете получить скидку в размере 150% от разницы цен, если выполняются следующие условия: <BR>
+                            </p>
+                            <ol type="a">
+                                <li> Магазин находится в списке магазинов-конкурентов
+                                <li> Товар в другом магазине продаётся не по скидке
+                                <li> Цена товара у конкурента не менее 5000 руб.
+                                <li> Скидка по акции ГНЦ не может превышать 30% от цены DNS;
+                            </ol>
+                </div>
+            </div>
+
+            <div id="right-side">
+                <div class="right-side_content">
+                    <H2> Товары наших партнёров </H2>
+                    <a href="https://www.citilink.ru/product/videokarta-gigabyte-nvidia-geforce-rtx-4090-gv-n4090aero-oc-24gd-24gb-1917964/"><img src="C:/Github/Web/Content/Viduha.jpg"></a>
+                    <a href="https://www.mvideo.ru/products/televizor-samsung-ue50du7100uxru-10032586"><img src="C:/Github/Web/Content/Telek.jpg"></a>
+                    <a href="https://www.onlinetrade.ru/catalogue/stiralnye_mashiny-c45/indesit/stiralnaya_mashina_indesit_iwuc_4105_869990629180-80334.html"><img src="C:/Github/Web/Content/Stiralka.jpg"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a id="copyright"> DNS. Все права защищены 2024 ©</a>
+        </div>
+
+    </div>
+</body>

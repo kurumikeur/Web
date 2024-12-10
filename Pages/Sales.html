@@ -1,0 +1,116 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Style.css">
+    <title> DNS </title>
+    <script src="C:/Github/Web/Scripts/Search.js"></script> 
+</head>
+<body>
+    <div id="main"> 
+        <div class="header">
+            <div class="header_logo">
+                <img src="C:/Github/Web/Content/Logo.png">
+            </div>
+            <div class="header_container">
+                <nav class="header_menu">
+                    <ul>   
+                        <li> <a href="Sales.html">Акции              </a> </li>
+                        <li> <a href="Refund.html">Возврат        </a> </li> 
+                        <li> <a href="Delivery.html">Доставка           </a> </li> 
+                        <li> <a href="Vacancy.html">Вакансии           </a> </li>
+                    </ul>   
+                </nav>
+                <div class="search">
+                    <form action="" method="get" onsubmit="findText(event)"> 
+                        <input id="search-input" placeholder="Искать..." type="text">
+                        <button onclick="findText()">Поиск</button> 
+                    </form>
+                </div>
+                <div class="login-form">
+                    <div class="Button">
+                        <form action = "Login.html">
+                            <div> <input type="submit" value="Войти">      </div>
+                        </form>
+                        <form action = "Registration.html">
+                            <div> <input type="submit" value="Регистрация">      </div>
+                        </form>
+                        <form action = "Cart.html">
+                            <div> <input type="submit" value="Корзина">      </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="header_logo">
+
+            </div>
+        </div>
+        
+        <div class="container">
+            <div id="left-side">
+                <nav class="left-side_menu">
+                    <ul>   
+                        <li> <a href="Index.html">Главная        </a> </li>
+                        <li> <a href="Catalog.html">Каталог        </a> </li> 
+                        <li> <a href="Contacts.html">Контакты       </a> </li> 
+                        <li> <a href="AboutUs.html">О нас          </a> </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div id="center">
+                <div class="center_content">
+                    <div class="center_content_sales">
+                        <H2  align="center">Акции</H2>
+                        <div id="text"><a> В период  с 21 декабря по 30 января в DNS будет проходить распродажа электронной техники.</a></div> <BR>
+                        <div id="text"><a> Список товаров, участвующих в акции: </a></div>
+                        <table border="3">
+                            <tr>
+                              <th>Наименование товара</th>
+                              <th>Старая цена</th>
+                              <th>Новая цена</th>
+                            </tr>
+                            <tr>
+                              <td>6.7" Смартфон HONOR 90 256 ГБ черный</td>
+                              <td class="old_price">36 999 ₽</td>
+                              <td>29 999 ₽</td>
+                            </tr>
+                            <tr>
+                              <td>27" Монитор MSI G272QPF E2 черный</td>
+                              <td class="old_price">28 499 ₽</td>
+                              <td>24 999 ₽</td>
+                            </tr>
+                            <tr>
+                              <td>Наушники TWS HUAWEI Freebuds 5i черный</td>
+                              <td class="old_price">3 999 ₽</td>
+                              <td>3 299 ₽</td>
+                            </tr>
+                            <tr>
+                              <td>14.6" Планшет Samsung Galaxy Tab S10 Ultra Wi-Fi 256 ГБ серый + стилус</td>
+                              <td class="old_price">129 999 ₽</td>
+                              <td>100 299 ₽</td>
+                            </tr>
+                            <tr>
+                              <td>Смарт-часы HUAWEI WATCH GT 5 Pro</td>
+                              <td class="old_price">24 999 ₽</td>
+                              <td>26 299 ₽</td>
+                            </tr>
+                          </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="right-side">
+                <div class="right-side_content">
+                    <H2> Товары наших партнёров </H2>
+                    <a href="https://www.citilink.ru/product/videokarta-gigabyte-nvidia-geforce-rtx-4090-gv-n4090aero-oc-24gd-24gb-1917964/"><img src="C:/Github/Web/Content/Viduha.jpg"></a>
+                    <a href="https://www.mvideo.ru/products/televizor-samsung-ue50du7100uxru-10032586"><img src="C:/Github/Web/Content/Telek.jpg"></a>
+                    <a href="https://www.onlinetrade.ru/catalogue/stiralnye_mashiny-c45/indesit/stiralnaya_mashina_indesit_iwuc_4105_869990629180-80334.html"><img src="C:/Github/Web/Content/Stiralka.jpg"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a id="copyright"> DNS. Все права защищены 2024 ©</a>
+        </div>
+
+    </div>
+</body>

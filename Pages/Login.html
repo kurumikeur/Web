@@ -1,0 +1,100 @@
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="Style.css">
+    <title> DNS </title>
+    <script src="C:/Github/Web/Scripts/Search.js"></script> 
+</head>
+<body>
+    <div id="main"> 
+        <div class="header">
+            <div class="header_logo">
+                <img src="C:/Github/Web/Content/Logo.png">
+            </div>
+            <div class="header_container">
+                <nav class="header_menu">
+                    <ul>   
+                        <li> <a href="Sales.html">Акции              </a> </li>
+                        <li> <a href="Refund.html">Возврат        </a> </li> 
+                        <li> <a href="Delivery.html">Доставка           </a> </li> 
+                        <li> <a href="Vacancy.html">Вакансии           </a> </li>
+                    </ul>   
+                </nav>
+                <div class="search">
+                    <form action="" method="get" onsubmit="findText(event)"> 
+                        <input id="search-input" placeholder="Искать..." type="text">
+                        <button onclick="findText()">Поиск</button> 
+                    </form>
+                </div>
+                <div class="login-form">
+                    <div class="Button">
+                        <form action = "Login.html">
+                            <div> <input type="submit" value="Войти">      </div>
+                        </form>
+                        <form action = "Registration.html">
+                            <div> <input type="submit" value="Регистрация">      </div>
+                        </form>
+                        <form action = "Cart.html">
+                            <div> <input type="submit" value="Корзина">      </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="header_logo">
+
+            </div>
+        </div>
+        
+        <div class="container">
+            <div id="left-side">
+                <nav class="left-side_menu">
+                    <ul>   
+                        <li> <a href="Index.html">Главная        </a> </li>
+                        <li> <a href="Catalog.html">Каталог        </a> </li> 
+                        <li> <a href="Contacts.html">Контакты       </a> </li> 
+                        <li> <a href="AboutUs.html">О нас          </a> </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div id="center">
+                <div class="center_content">
+                    <div class="loginpage-form">
+                        <h2>Вход</h2>
+                        <div class="input-form">
+                            <form method="post">
+                                    <div class="form-group">
+                                <label for="login">Логин:</label>
+                                <input type="text" id="login" name="login" required>
+                                        <br />
+                                    </div>
+
+                                    <div class="form-group">
+                                <label for="password">Пароль:</label>
+                                <input type="password" id="password" name="password" required>
+                                        <br />
+                                    </div>
+                                    <div class="input-button">
+                                        <button type="submit">Войти</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="right-side">
+                <div class="right-side_content">
+                    <H2> Товары наших партнёров </H2>
+                    <a href="https://www.citilink.ru/product/videokarta-gigabyte-nvidia-geforce-rtx-4090-gv-n4090aero-oc-24gd-24gb-1917964/"><img src="C:/Github/Web/Content/Viduha.jpg"></a>
+                    <a href="https://www.mvideo.ru/products/televizor-samsung-ue50du7100uxru-10032586"><img src="C:/Github/Web/Content/Telek.jpg"></a>
+                    <a href="https://www.onlinetrade.ru/catalogue/stiralnye_mashiny-c45/indesit/stiralnaya_mashina_indesit_iwuc_4105_869990629180-80334.html"><img src="C:/Github/Web/Content/Stiralka.jpg"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a id="copyright"> DNS. Все права защищены 2024 ©</a>
+        </div>
+
+    </div>
+</body>
