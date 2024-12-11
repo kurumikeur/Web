@@ -3,13 +3,13 @@ let originalContent = null;
 
 function saveOriginalContent() {
     if (!originalContent) {
-        originalContent = document.body.innerHTML;
+        originalContent = document.body.innerphp;
     }
 }
 
 function restoreOriginalContent() {
     if (originalContent) {
-        document.body.innerHTML = originalContent;
+        document.body.innerphp = originalContent;
     }
 }
 
@@ -35,9 +35,9 @@ function findText(event) {
         if (node.nodeType === Node.TEXT_NODE) {
             const text = node.nodeValue;
             if (regex.test(text)) {
-                const highlightedHTML = text.replace(regex, match => `<span class="highlight">${match}</span>`);
+                const highlightedphp = text.replace(regex, match => `<span class="highlight">${match}</span>`);
                 const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = highlightedHTML;
+                tempDiv.innerphp = highlightedphp;
 
                 while (tempDiv.firstChild) {
                     node.parentNode.insertBefore(tempDiv.firstChild, node);
