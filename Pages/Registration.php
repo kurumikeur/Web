@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-
 <?php
-$servername = "localhost";
-$database = "shopdns";
-$username = "root";
-$password = "";
-// Создаем соединение
-$conn = mysqli_connect($servername, $username, $password, $database);
-// Проверяем соединение
-if (!$conn) {
-die("Connection failed: " . mysqli_connect_error());
-}
-
-mysqli_close($conn);
+require_once __DIR__ . "/../PhpActions/init.php";
 ?>
+
+<!DOCTYPE html>
 
 <head>
     <meta charset="utf-8">
@@ -36,25 +25,31 @@ mysqli_close($conn);
                         <li> <a href="Vacancy.php">Вакансии           </a> </li>
                     </ul>   
                 </nav>
-                <div class="search">
-                    <form action="" method="get" onsubmit="findText(event)"> 
-                        <input id="search-input" placeholder="Искать..." type="text">
-                        <button onclick="findText()">Поиск</button> 
-                    </form>
-                </div>
-                <div class="login-form">
-                    <div class="Button">
-                        <form action = "Login.php">
-                            <div> <input type="submit" value="Войти">      </div>
-                        </form>
-                        <form action = "Registration.php">
-                            <div> <input type="submit" value="Регистрация">      </div>
-                        </form>
-                        <form action = "Cart.php">
-                            <div> <input type="submit" value="Корзина">      </div>
-                        </form>
+                <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                    <div class="login-form">
+                        <div class="Button">
+                            <a> Добро пожаловать, <?php echo $_COOKIE['login'] ?> </a>
+                            <form action = "../PhpActions/Exit.php">
+                                <div> <input type="submit" value="Выйти">      </div>
+                            </form>
+                            <form action = "Cart.php">
+                                <div> <input type="submit" value="Корзина">      </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+
+                <?php else : ?>
+                    <div class="login-form">
+                        <div class="Button">
+                            <form action = "Login.php">
+                                <div> <input type="submit" value="Войти">      </div>
+                            </form>
+                            <form action = "Registration.php">
+                                <div> <input type="submit" value="Регистрация">      </div>
+                            </form>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="header_logo">
 
@@ -78,7 +73,10 @@ mysqli_close($conn);
                     <div class="loginpage-form">
                         <h2>Регистрация</h2>
                         <div class="input-form">
-                            <form method="post">
+
+                        <?php flash() ?>
+
+                            <form action="../PhpActions/RegisterUser.php" method="post">
                                     <div class="form-group">
                                         <label for="lastname">Фамилия:</label>
                                         <input type="text" id="lastname" name="lastname" required>
@@ -111,18 +109,18 @@ mysqli_close($conn);
 
                                     <div class="form-group">
                                         <label for="login">Почта:</label>
-                                        <input type="text" id="mail" name="mail" required>
+                                        <input type="email" id="mail" name="mail" required>
                                         <br />
                                     </div>
 
                                    <div class="form-group">
                                          <label for="login">Телефон:</label>
-                                        <input type="text" id="phone" name="phone" required>
+                                        <input type="tel" id="phone" name="phone" required>
                                         <br />
                                     </div>
                                     <div class="login-checkbox">
                                         <label for="vehicle1"> Я соглашаюсь на обработку персональных данных </label><br>
-                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                        <input type="checkbox" required id="vehicle1" name="vehicle1" value="Bike">
                                     </div>    
                                     <div class="input-button">
                                         <button type="submit">Зарегистрироваться</button>

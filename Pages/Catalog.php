@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-
 <?php
-$servername = "localhost";
-$database = "shopdns";
-$username = "root";
-$password = "";
-// Создаем соединение
-$conn = mysqli_connect($servername, $username, $password, $database);
-// Проверяем соединение
-if (!$conn) {
-die("Connection failed: " . mysqli_connect_error());
-}
-
-mysqli_close($conn);
+require_once __DIR__ . "/../PhpActions/init.php";
 ?>
+
+<!DOCTYPE html>
 
 <head>
     <meta charset="utf-8">
@@ -42,19 +31,31 @@ mysqli_close($conn);
                         <button onclick="findText()">Поиск</button> 
                     </form>
                 </div>
-                <div class="login-form">
-                    <div class="Button">
-                        <form action = "Login.php">
-                            <div> <input type="submit" value="Войти">      </div>
-                        </form>
-                        <form action = "Registration.php">
-                            <div> <input type="submit" value="Регистрация">      </div>
-                        </form>
-                        <form action = "Cart.php">
-                            <div> <input type="submit" value="Корзина">      </div>
-                        </form>
+                <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                    <div class="login-form">
+                        <div class="Button">
+                            <a> Добро пожаловать, <?php echo $_COOKIE['login'] ?> </a>
+                            <form action = "../PhpActions/Exit.php">
+                                <div> <input type="submit" value="Выйти">      </div>
+                            </form>
+                            <form action = "Cart.php">
+                                <div> <input type="submit" value="Корзина">      </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+
+                <?php else : ?>
+                    <div class="login-form">
+                        <div class="Button">
+                            <form action = "Login.php">
+                                <div> <input type="submit" value="Войти">      </div>
+                            </form>
+                            <form action = "Registration.php">
+                                <div> <input type="submit" value="Регистрация">      </div>
+                            </form>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="header_logo">
 
@@ -103,7 +104,7 @@ mysqli_close($conn);
                         <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
-                                        <td colspan="2" align="center"><img src="C:\Github\Web\Content\NoutAsus.jpg" width="100%" ></td>
+                                        <td colspan="2" align="center"><img src="http://localhost/Web/Content/NoutAsus.jpg" width="100%" ></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" >Ноутбук Asus TUF Gaming F15 FX507ZC4-HN009</td>
@@ -124,7 +125,7 @@ mysqli_close($conn);
                         <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
-                                        <td colspan="2" align="center"><img src="C:\Github\Web\Content\Viduha.jpg" width="100%"></td>
+                                        <td colspan="2" align="center"><img src="http://localhost/Web/Content/Viduha.jpg" width="100%"></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">Видеокарта NVIDIA RTX 4090 GV-N4090AERO</td>
@@ -145,7 +146,7 @@ mysqli_close($conn);
                         <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
-                                        <td colspan="2" align="center"><img src="C:\Github\Web\Content\Telek.jpg" width="100%" ></td>
+                                        <td colspan="2" align="center"><img src="http://localhost/Web/Content/Telek.jpg" width="100%" ></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" >Телевизор Samsung UE50DU7100UXRU</td>
@@ -170,7 +171,7 @@ mysqli_close($conn);
                         <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
-                                        <td colspan="2" align="center"><img src="C:\Github\Web\Content\Hotpoint.jpg" width="100%" ></td>
+                                        <td colspan="2" align="center"><img src="http://localhost/Web/Content/Hotpoint.jpg" width="100%" ></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">Стиральная машина Hotpoint-Ariston WD 8548 C7S</td>
@@ -191,7 +192,7 @@ mysqli_close($conn);
                         <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
-                                        <td colspan="2" align="center"><img src="C:\Github\Web\Content\Holodos.jpg" width="100%" ></td>
+                                        <td colspan="2" align="center"><img src="http://localhost/Web/Content/Holodos.jpg" width="100%" ></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">Холодильник Candy CCRN 6200 S серебристый</td>
@@ -212,7 +213,7 @@ mysqli_close($conn);
                         <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
-                                        <td colspan="2" align="center"><img src="C:\Github\Web\Content\Kofe.jpg" width="100%" ></td>
+                                        <td colspan="2" align="center"><img src="http://localhost/Web/Content/Kofe.jpg" width="100%" ></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">Кофемашина сенсорная Thomson CF20M01 </td>

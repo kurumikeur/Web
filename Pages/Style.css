@@ -164,7 +164,7 @@ input {
     align-self: center;
 }
 .search input {
-    width: 100%;
+    width: 96px;
     height: 42px;
     padding-left: 10px;
     border: 2px solid black;
@@ -181,7 +181,7 @@ input {
     font-family: monospace;
     right: 0px;
     width: 64px;
-    height: 42px;
+    height: auto;
     border: 2px solid black;
     background-image: linear-gradient(rgb(255, 162, 55), rgb(255, 136, 0) );
     border-radius: 0 5px 5px 0;
@@ -400,6 +400,11 @@ input {
     align-items: center;
 }
 
+.feedback-text textarea{
+    height:300px;
+}
+
+
 .loginpage-form input,
 .loginpage-form textarea,
 .loginpage-form select {
@@ -416,10 +421,6 @@ input {
 
 .form-group, .feedback-text{
     margin-top: 15px;
-}
-
-.feedback-text input{
-    height:300px;
 }
 
 .loginpage-form button {
@@ -521,6 +522,7 @@ input {
     max-width: 33%;
 }
 .catalog_electronic, .catalog_home {
+    font-size: 13px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

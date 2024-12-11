@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-
 <?php
-$servername = "localhost";
-$database = "shopdns";
-$username = "root";
-$password = "";
-// Создаем соединение
-$conn = mysqli_connect($servername, $username, $password, $database);
-// Проверяем соединение
-if (!$conn) {
-die("Connection failed: " . mysqli_connect_error());
-}
-
-mysqli_close($conn);
+require_once __DIR__ . "/../PhpActions/init.php";
 ?>
 
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="Style.css">
@@ -42,19 +30,31 @@ mysqli_close($conn);
                         <button onclick="findText()">Поиск</button> 
                     </form>
                 </div>
-                <div class="login-form">
-                    <div class="Button">
-                        <form action = "Login.php">
-                            <div> <input type="submit" value="Войти">      </div>
-                        </form>
-                        <form action = "Registration.php">
-                            <div> <input type="submit" value="Регистрация">      </div>
-                        </form>
-                        <form action = "Cart.php">
-                            <div> <input type="submit" value="Корзина">      </div>
-                        </form>
+                <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                    <div class="login-form">
+                        <div class="Button">
+                            <a> Добро пожаловать, <?php echo $_COOKIE['login'] ?> </a>
+                            <form action = "../PhpActions/Exit.php">
+                                <div> <input type="submit" value="Выйти">      </div>
+                            </form>
+                            <form action = "Cart.php">
+                                <div> <input type="submit" value="Корзина">      </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+
+                <?php else : ?>
+                    <div class="login-form">
+                        <div class="Button">
+                            <form action = "Login.php">
+                                <div> <input type="submit" value="Войти">      </div>
+                            </form>
+                            <form action = "Registration.php">
+                                <div> <input type="submit" value="Регистрация">      </div>
+                            </form>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="header_logo">
 
