@@ -100,8 +100,8 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         </div> -->
                         <H2 align="center"> Электроника </H2> 
                         <div class="catalog_electronic">
-                               
-                        <table border="3" cellpadding="10" cellspacing="5" align="center">
+                        <?php MakeCatalogElectronic(); ?>       
+                        <!-- <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
                                         <td colspan="2" align="center"><img src="http://localhost/Web/Content/NoutAsus.jpg" width="100%" ></td>
@@ -163,12 +163,13 @@ require_once __DIR__ . "/../PhpActions/init.php";
                                         </td>
                                     </tr>
                             </tr>
-                        </table>
+                        </table> -->
 
                         </div>
                         <H2 align="center"> Бытовая техника </H2>    
                         <div class="catalog_home">
-                        <table border="3" cellpadding="10" cellspacing="5" align="center">
+                        <?php MakeCatalogHome(); ?>     
+                        <!-- <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
                                         <td colspan="2" align="center"><img src="http://localhost/Web/Content/Hotpoint.jpg" width="100%" ></td>
@@ -230,7 +231,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                                         </td>
                                     </tr>
                             </tr>
-                        </table>
+                        </table> -->
                         </div>
                     </div>
                 </div>

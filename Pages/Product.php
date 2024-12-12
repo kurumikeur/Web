@@ -75,26 +75,26 @@ require_once __DIR__ . "/../PhpActions/init.php";
             </div>
 
             <div id="center">
-                <div class="center_content_catalog">
+                <?php MakeCard((int)$_POST['id'])?>
+                <!-- <div class="center_content_catalog">
                     <H2 align="center">Каталог товаров</H2>
                     <div class="catalog_product">
                         <div class="product_intro">
-                            <h2>Ноутбук Asus TUF Gaming F15 FX507ZC4-HN009</h2>
+                            <h2>50" (125 см) LED-телевизор Samsung UE50DU7100UXRU черный</h2>
                             <div class="product_specs">
-                                <img src="http://localhost/Web/Content/NoutAsus.jpg" alt="@Model.Product.Name" class="product-detail-img">
+                                <img src="http://localhost/Web/Content/Telek.jpg" alt="@Model.Product.Name" class="product-detail-img">
                                 <div>
-                                    <a> английская/русская раскладка, 1920x1080, IPS, Intel Core i5-12500H, ядра: 4 + 8 х 2.5 ГГц + 1.8 ГГц, RAM 16 ГБ, SSD 512 ГБ, GeForce RTX 3050 для ноутбуков 4 ГБ, без ОС</a>
+                                    <a> Edge LED, Crystal UHD, 4K UltraHD, Wi-Fi, 60 Гц, Tizen, HDMI х 3, USB х 1 шт</a>
                                 </div>
                             </div>
                         </div>
                         <div class="product_body">
                             <div class="product_info">
                                 <div class="product_detailed">
-                                <p>Ноутбук ASUS TUF Gaming F15 FX507ZC4-HN009 с диагональю экрана 15.6" выполнен в черном алюминиевом корпусе. Это надежная геймерская платформа с процессором Intel Core i5-12500H. Он наделен 4 производительными и 8 энергоэффективными ядрами, поддерживает 16 потоков. За счет этого идет распределение нагрузки, что улучшает производительность системы.
-                                    ASUS TUF Gaming F15 FX507ZC4-HN009 отображает на IPS-экране детализированное изображение в качестве Full HD. При просмотре с разных углов картинка сохраняет четкость цветопередачи. Видеопроцессор GeForce RTX 3050 со встроенной памятью объемом 4 ГБ подходит для профессионального стримминга и игр с передовыми графическими технологиями. Он позволяет получить плавное изображение на дисплее.
-                                    DDR4-память объемом 16 ГБ позволяет обрабатывать одновременно несколько приложений без сбоев и задержек. Она расширяет многозадачность системы, позволяя плавно переключаться между программами. Система охлаждения модели дополнена функцией самоочистки. Это обеспечивает стабильную работу аппарата при любых нагрузках.</p>
+                                <p>LED-телевизор Samsung UE50DU7100UXRU обеспечивает детализированное изображение на 50-дюймовом экране Crystal UHD с разрешением 3840x2160 пикселей. Технология HDR10 гарантирует четкость в темных сценах и различимость объектов при ярком свете. За точную передачу цветовой палитры отвечает технология PurColor. Функция Motion Xcelerator гарантирует плавную смену кадров при отображении динамичного изображения. Акустическая система выходной мощностью 20 Вт с технологией Dolby Digital Plus наполняет пространство комнаты объемным звучанием.
+                                    Телевизор Samsung UE50DU7100UXRU работает под управлением ОС Tizen. Платформа Smart TV предоставляет доступ к потоковым сервисам фильмов, сериалов, музыки и другого развлекательного контента. Для беспроводного подключения к сети Интернет предусмотрен модуль Wi-Fi.</p>
                                 </div>
-                                <p class="product-price">Цена: 72 000 ₽</p>
+                                <p class="product-price">Цена: 50 000 ₽</p>
                             </div>
                             <div class="product_nav">
                                 <form method="post" asp-page-handler="AddToCart">
@@ -108,7 +108,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div id="right-side">

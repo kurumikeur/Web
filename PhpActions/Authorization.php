@@ -35,11 +35,13 @@
         } else {
             // Incorrect password
             flash("Неверный пароль");
+            header('Location: ../Pages/Login.php');
             die;
         }
     } else {
         // Incorrect username
         flash("Неверный логин");
+        header('Location: ../Pages/Login.php');
         die;
     }
     flash("Вход выполнен успешно");
