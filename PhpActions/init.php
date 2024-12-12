@@ -157,4 +157,28 @@ function MakeCard(?int $id)
                     </div>
                 </div>";
         echo $html;
-}?>
+}
+
+function AddSlides(){
+    $servername = "localhost";
+    $database = "shopdns";
+    $username = "root";
+    $password = "";
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql= "SELECT image FROM product ";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($image);
+    while ($stmt->fetch()) {
+        $html = "<div class='item'>
+                                        <img src='$image'>
+                </div>";
+        echo $html;
+    }
+}
+?>

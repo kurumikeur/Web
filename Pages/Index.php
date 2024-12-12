@@ -7,7 +7,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
     <meta charset="utf-8">
     <link rel="stylesheet" href="Style.css">
     <title> DNS </title>
-    <script src="http://localhost/Web/Scripts/Search.js"></script> 
+    <script src="http://localhost/Web/Scripts/Search.js"></script>
 </head>
 <body>
     <div id="main"> 
@@ -75,28 +75,43 @@ require_once __DIR__ . "/../PhpActions/init.php";
 
             <div id="center">
                 <div class="center_content">
+                    <div class="index-text"> 
                     <H2  align="center">Продажа сертифицированной техники</H2>
-                            <p style="text-align:justify">
-                                Магазин DNS предоставляет покупателям возможность приобретать различную технику. Наш магазин находится на рынке уже не первый год и имеет большой ассортимент различных видов техники:                        
-                            </p>
-                            <table border="3" cellpadding="10" cellspacing="5">
-                                <tr>
-                                    <td colspan=2 align="center">Бытовая техника</td>
-                                    <td colspan=2 align="center">Электроника</td>
-                                </tr>
-                                <tr>
-                                    <td>Холодильники</td>
-                                    <td>Стиральные <BR> машины</td>
-                                    <td>Компьютеры</td>
-                                    <td>Смартфоны</td>
-                                </tr>
-                                <tr>
-                                    <td>Кухонные плиты</td>
-                                    <td>Посудомоечные <BR> машины</td>
-                                    <td>Смарт-часы</td>
-                                    <td>Ноутбуки</td>
-                                </tr>
-                            </table>
+                            <div class="header-slider">
+                                <div class="header-index-text">
+                                    <p style="text-align:justify">
+                                        Магазин DNS предоставляет покупателям возможность приобретать различную технику. Наш магазин находится на рынке уже не первый год и имеет большой ассортимент различных видов техники:                        
+                                    </p>
+                                    <table border="3" cellpadding="10" cellspacing="5">
+                                        <tr>
+                                            <td colspan=2 align="center">Бытовая техника</td>
+                                            <td colspan=2 align="center">Электроника</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Холодильники</td>
+                                            <td>Стиральные <BR> машины</td>
+                                            <td>Компьютеры</td>
+                                            <td>Смартфоны</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Кухонные плиты</td>
+                                            <td>Посудомоечные <BR> машины</td>
+                                            <td>Смарт-часы</td>
+                                            <td>Ноутбуки</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="slider">
+                                    <!-- Первый слайд -->
+                                    <?php AddSlides() ?>
+
+                                    <!-- Кнопки-стрелочки -->
+                                    <a class="previous" onclick="previousSlide()">&#10094;</a>
+                                    <a class="next" onclick="nextSlide()">&#10095;</a>
+                                    </div>
+                                    <script src="http://localhost/Web/Scripts/Slider.js">ShowSlides(1);</script>
+                                </div>
+                            <div>
 
                             <H2  align="center">Преимущества магазина</H2>
                             <p style="text-align:justify">
@@ -110,6 +125,8 @@ require_once __DIR__ . "/../PhpActions/init.php";
                                             
                                     </ul>
                             </p>
+                            </div>
+                            <div>
                             <h2 align="center"> Гарантия качества </h2>
                             <p style="text-align:justify">  
                                 Наш магазин продаёт только орригинальные товары с гарантией от продавца. В случае, если покупатель получает некачественный товар, мы обязуемся: <BR>
@@ -128,7 +145,8 @@ require_once __DIR__ . "/../PhpActions/init.php";
                                         </li>
                                     </ol>
                             </ol>
-                        
+                            </div>
+                            <div>
                             <h2 align="center"> Гарантия низкой цены </h2>
                             <p style="text-align:justify">  
                                 Магазин DNS гарантирует низкую цену в сравнении с магазинами-конкурентами. Если цена в нашем магазине выше, чем в другом, вы можете получить скидку в размере 150% от разницы цен, если выполняются следующие условия: <BR>
@@ -139,6 +157,8 @@ require_once __DIR__ . "/../PhpActions/init.php";
                                 <li> Цена товара у конкурента не менее 5000 руб.
                                 <li> Скидка по акции ГНЦ не может превышать 30% от цены DNS;
                             </ol>
+                        </div>
+                    </div>
                 </div>
             </div>
 
