@@ -1,4 +1,14 @@
 <?php
+
+$CartDataArray = array();
+class CartData{
+    public $id = "1";
+    public $name;
+    public $short_description;
+    public $price;
+    public $image;
+    public $pcs;
+}
 session_start();
 // Инициализируем сессию
 
@@ -180,5 +190,55 @@ function AddSlides(){
                 </div>";
         echo $html;
     }
+}
+
+function AddToCart(){
+    $servername = "localhost";
+    $database = "shopdns";
+    $username = "root";
+    $password = "";
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $_cartData = new CartData();
+    $sql= "SELECT id, name, short_description, price, image FROM product WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $_POST['id']);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($_cartData->id, $_cartData->name, $_cartData->short_description, $_cartData->price, $_cartData->image);
+    while ($stmt->fetch()){   
+        array_push(global $CartDataArray, $_cartData);
+    }
+
+    $html = "<div class='product-cart'>
+                        <div class='product-cart-body'>
+                            <div class='product-cart-photo'>
+                                <img src='http://localhost/Web/Content/Telek.jpg'>
+                            </div>
+                            <div class='product-cart-details'>
+                                <div class='product-cart-title'>
+                                    <a> Test Title </a>
+                                </div>
+                                <div class='product-cart-description'>
+                                    <a> Test Description </a>
+                                </div>
+                            </div>
+                            <div class='product-cart-pcs'>
+                                <a> test 3</a>
+                            </div>
+                        </div>
+                        <div class='product-cart-price'>
+                            <div class='product-price'>
+                                <a> Цена за шт.: <BR>test 4</a>
+                            </div>
+                            <div class='product-price-sum'>
+                                <a> Общая цена: <BR> test 5</a>
+                            </div>
+                        </div>
+        </div>"
+    echo $html;
 }
 ?>

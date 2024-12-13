@@ -76,70 +76,33 @@ require_once __DIR__ . "/../PhpActions/init.php";
 
             <div id="center">
                 <div class="center_content">
-                    <H2  align="center">Продажа сертифицированной техники</H2>
-                            <p style="text-align:justify">
-                                Магазин DNS предоставляет покупателям возможность приобретать различную технику. Наш магазин находится на рынке уже не первый год и имеет большой ассортимент различных видов техники:                        
-                            </p>
-                            <table border="3" cellpadding="10" cellspacing="5">
-                                <tr>
-                                    <td colspan=2 align="center">Бытовая техника</td>
-                                    <td colspan=2 align="center">Электроника</td>
-                                </tr>
-                                <tr>
-                                    <td>Холодильники</td>
-                                    <td>Стиральные <BR> машины</td>
-                                    <td>Компьютеры</td>
-                                    <td>Смартфоны</td>
-                                </tr>
-                                <tr>
-                                    <td>Кухонные плиты</td>
-                                    <td>Посудомоечные <BR> машины</td>
-                                    <td>Смарт-часы</td>
-                                    <td>Ноутбуки</td>
-                                </tr>
-                            </table>
-
-                            <H2  align="center">Преимущества магазина</H2>
-                            <p style="text-align:justify">
-                                Наш магазин имеет большое количество преимуществ:
-                                        <li> Широкая сеть магазинов
-                                        <li> Гарантия низкой цены
-                                        <li> Большое количество фильтров
-                                        <li> Сервисное и гарантийное обслуживание в кратчайшие сроки
-                                        <li> Профессиональные консультанты
-                                        <li> Вежливый персонал
-                                            
-                                    </ul>
-                            </p>
-                            <h2 align="center"> Гарантия качества </h2>
-                            <p style="text-align:justify">  
-                                Наш магазин продаёт только орригинальные товары с гарантией от продавца. В случае, если покупатель получает некачественный товар, мы обязуемся: <BR>
-                            </p>
-                            <ol type="1">
-                                <li>Принять товар в сервисный центр
-                                </li>
-                                <li> Осуществить проверку товара                               
-                                <li> Осуществить компенсацию в случае подтверждения неисправности
-                                    <ol type="a">
-                                        <li>Возврат средств за товар
-                                        </li>
-                                        <li>Замена товара на аналогичный
-                                        </li>
-                                        <li>Ремонт неисправности
-                                        </li>
-                                    </ol>
-                            </ol>
-                        
-                            <h2 align="center"> Гарантия низкой цены </h2>
-                            <p style="text-align:justify">  
-                                Магазин DNS гарантирует низкую цену в сравнении с магазинами-конкурентами. Если цена в нашем магазине выше, чем в другом, вы можете получить скидку в размере 150% от разницы цен, если выполняются следующие условия: <BR>
-                            </p>
-                            <ol type="a">
-                                <li> Магазин находится в списке магазинов-конкурентов
-                                <li> Товар в другом магазине продаётся не по скидке
-                                <li> Цена товара у конкурента не менее 5000 руб.
-                                <li> Скидка по акции ГНЦ не может превышать 30% от цены DNS;
-                            </ol>
+                    <H2 align='center'> Корзина </H2>
+                    <div class='product-cart'>
+                        <div class='product-cart-body'>
+                            <div class='product-cart-photo'>
+                                <img src='http://localhost/Web/Content/Telek.jpg'>
+                            </div>
+                            <div class='product-cart-details'>
+                                <div class='product-cart-title'>
+                                    <a> Test Title </a>
+                                </div>
+                                <div class='product-cart-description'>
+                                    <a> Test Description </a>
+                                </div>
+                            </div>
+                            <div class='product-cart-pcs'>
+                                <a> test 3</a>
+                            </div>
+                        </div>
+                        <div class='product-cart-price'>
+                            <div class='product-price'>
+                                <a> Цена за шт.: <BR>test 4</a>
+                            </div>
+                            <div class='product-price-sum'>
+                                <a> Общая цена: <BR> test 5</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

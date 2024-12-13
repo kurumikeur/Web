@@ -32,6 +32,7 @@
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['id'] = $id;
             setcookie ("login", $_POST['login'], time()+ 3600 * 48, "/");
+            setcookie ("login", $_POST['id'], time()+ 3600 * 48, "/");
         } else {
             // Incorrect password
             flash("Неверный пароль");
