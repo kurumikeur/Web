@@ -25,6 +25,12 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         <li> <a href="Vacancy.php">Вакансии           </a> </li>
                     </ul>   
                 </nav>
+                <div class="search">
+                    <form action="" method="get" onsubmit="findText(event)"> 
+                        <input id="search-input" placeholder="Искать..." type="text">
+                        <button onclick="findText()">Поиск</button> 
+                    </form>
+                </div>
                 <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
                     <div class="login-form">
                         <div class="Button">

@@ -24,6 +24,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         <li> <a href="Vacancy.php">Вакансии           </a> </li>
                     </ul>   
                 </nav>
+                <?php flash() ?>
                 <div class="search">
                     <form action="" method="get" onsubmit="findText(event)"> 
                         <input id="search-input" placeholder="Искать..." type="text">
@@ -33,6 +34,9 @@ require_once __DIR__ . "/../PhpActions/init.php";
                 <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
                     <div class="login-form">
                         <div class="Button">
+                            <div>
+                                <?php flash() ?>
+                            </div>
                             <a> Добро пожаловать, <?php echo $_COOKIE['login'] ?> </a>
                             <form action = "../PhpActions/Exit.php">
                                 <div> <input type="submit" value="Выйти">      </div>
@@ -46,6 +50,9 @@ require_once __DIR__ . "/../PhpActions/init.php";
                 <?php else : ?>
                     <div class="login-form">
                         <div class="Button">
+                            <div>
+                                <?php flash() ?>
+                            </div>
                             <form action = "Login.php">
                                 <div> <input type="submit" value="Войти">      </div>
                             </form>

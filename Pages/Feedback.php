@@ -77,7 +77,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
             <div id="center">
                 <div class="center_content">
                     <div class="loginpage-form">
-                        <h2>Вход</h2>
+                        <h2>Обратная связь</h2>
                         <div class="input-form">
 
                         <?php flash() ?>
