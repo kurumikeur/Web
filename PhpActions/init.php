@@ -9,8 +9,12 @@ class CartData{
     public $image;
     public $pcs;
 }
+
+
+
 session_start();
 // Инициализируем сессию
+
 
 function flash(?string $message = null)
 { 
@@ -27,7 +31,7 @@ function flash(?string $message = null)
     }
 }
 
-function MakeCatalogElectronic()
+function MakeCatalog(?string $string)
 { 
     $servername = "localhost";
     $database = "shopdns";
@@ -38,52 +42,12 @@ function MakeCatalogElectronic()
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql= "SELECT id, name, alias, price, image FROM product WHERE category = 'Electronic'";
+    $sql= "SELECT id, name, alias, price, image FROM product WHERE category = ?";
     $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $string);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($id, $name, $alias, $price, $image);
-    while ($stmt->fetch()) { 
-        $html = "<table border='3' cellpadding='10' cellspacing='5' align='center'>
-                            <tr>
-                                    <tr>
-                                        <td colspan='2' align='center'> <img src='$image'  width='100%' ></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan='2'> $name </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Цена: $price р.</td>
-                                        <td>
-                                            <div class='product_about'>
-                                                <form action = Product.php method='POST'>
-                                                    <input type='hidden' name='id' value='$id' />
-                                                    <button type='submit' class='back-to-catalog'>Подробнее о товаре</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                            </tr>
-                        </table>";
-        echo $html;
-    }
-}
-
-function MakeCatalogHome()
-{ 
-    $servername = "localhost";
-    $database = "shopdns";
-    $username = "root";
-    $password = "";
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-
-    $sql= "SELECT id, name, alias, price, image FROM product WHERE category = 'Home'";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $stmt->store_result();
+    $stmt->bind_param("s", $string);
     $stmt->bind_result($id, $name, $alias, $price, $image);
     while ($stmt->fetch()) {
         $html = "<table border='3' cellpadding='10' cellspacing='5' align='center'>
@@ -134,7 +98,7 @@ function MakeCard(?int $id)
     $stmt->store_result();
     $stmt->bind_result($name, $short_description, $description, $price, $image);
     $stmt->fetch();
-        $html = "<div class='center_content_catalog'>
+    $html = "<div class='center_content_catalog'>
                     <H2 align='center'>Каталог товаров</H2>
                     <div class='catalog_product'>
                         <div class='product_intro'>
@@ -154,10 +118,16 @@ function MakeCard(?int $id)
                                 <p class='product-price'>Цена: $price ₽</p>
                             </div>
                             <div class='product_nav'>
-                                <form method='post' asp-page-handler='AddToCart'>
-                                    <input type='hidden' name='productId' value='@Model.Product.Id' />
-                                    <button type='submit' class='add-to-cart-button'>Добавить в корзину</button>
-                                </form>
+                                <form method='post' action = '..\Pages\Cart.php'>";
+
+                                if(isset($_SESSION['id'])){
+                                   $html .= "<input type='hidden' name='quantity' value='1' />
+                                    <input type='hidden' name='productId' value='$id' />
+                                    <button type='submit' class='add-to-cart-button'>Добавить в корзину</button>";
+                                }
+                                else    
+                                    $html .= "<a>Войдите в аккаунт чтобы добавить в корзину</a>";
+                            $html .= "</form>
                                 <form action = 'Catalog.php'>
                                     <input type='hidden' name='productId' value='@Model.Product.Id' />
                                     <button type='submit' class='back-to-catalog'>Вернуться в каталог</button>
@@ -166,7 +136,8 @@ function MakeCard(?int $id)
                         </div>
                     </div>
                 </div>";
-        echo $html;
+    echo $html;
+    $_SESSION['CartDataTrue'] = True;
 }
 
 function AddSlides(){
@@ -179,20 +150,181 @@ function AddSlides(){
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql= "SELECT image FROM product ";
+    $sql= "SELECT id, image FROM product ";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($image);
+    $stmt->bind_result($id, $image);
     while ($stmt->fetch()) {
         $html = "<div class='item'>
-                                        <img src='$image'>
+                    <a class='slider_redir' href='Product.php'><img src='$image'></img></a>
                 </div>";
         echo $html;
     }
 }
 
-function AddToCart(){
+function AddToCart($productid, $quantity){
+    require_once __DIR__ . "/../PhpActions/init.php";
+    // Параметры для подключения
+    $servername = "localhost";
+    $database = "shopdns";
+    $username = "root";
+    $password = "";
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    if (isset($_SESSION['CartDataArray'])){
+        $CartDataArray = $_SESSION['CartDataArray'];
+    } else {
+        $CartDataArray = array();
+    }
+    $_cartData = new CartData();
+    $html = "<H2 align='Center'> Корзина </H2>";
+            echo $html;
+    $sql= "SELECT id, name, short_description, price, image FROM product WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $productid);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($_cartData->id, $_cartData->name, $_cartData->short_description, $_cartData->price, $_cartData->image);
+    $_cartData->pcs = $quantity;
+    $stmt->fetch();
+    $flag = false;
+    foreach ($CartDataArray as &$_cartData1){
+        if ($_cartData1->id === (int)$productid){
+            $_cartData1->pcs += $quantity;
+            $flag = true;
+            break;
+        }
+    }
+    if (!$flag) array_push($CartDataArray, $_cartData);
+    $_SESSION['CartDataArray'] = $CartDataArray;
+    $totalprice_products = 0;
+    foreach ($CartDataArray as $_cartData){
+    $totalprice = $_cartData->price * $_cartData->pcs;
+    $html = "<div class='product-cart'>
+                        <div class='product-cart-body'>
+                            <div class='product-cart-photo'>
+                                <img src='$_cartData->image'>
+                            </div>
+                            <div class='product-cart-details'>
+                                <div class='product-cart-title'>
+                                    <a> $_cartData->name</a>
+                                </div>
+                                <div class='product-cart-description'>
+                                    <a> $_cartData->short_description </a>
+                                </div>
+                            </div>
+                            <div class='product-cart-pcs'>
+                                    <a>Кол-во:</a><BR>
+                                    <form method='POST' action='../PhpActions/ChangeQuantity.php'>
+                                        <input type='hidden' name='productId' value='$_cartData->id'>
+                                        <input type='number' name='quantity' value='$_cartData->pcs'>
+                                        <input type='submit' value='Подтвердить'>
+                                    </form>
+                            </div>
+                        </div>
+                        <div class='product-cart-price'>
+                            <div class='product-price'>
+                                <a> Цена за шт.: <BR>$_cartData->price ₽</a>
+                            </div>
+                            <div class='product-price-sum'>
+                                <a> Общая цена: <BR> $totalprice ₽</a>
+                            </div>
+                        </div>
+        </div>";
+    echo $html;
+    $totalprice_products += $totalprice;
+    }
+    if(isset($_SESSION['CartDataTrue'])) {
+        echo "<p> Общая сумма: $totalprice_products ₽"; 
+    }
+} 
+function WatchCart(){
+        require_once __DIR__ . "/../PhpActions/init.php";
+        // Параметры для подключения
+        $servername = "localhost";
+        $database = "shopdns";
+        $username = "root";
+        $password = "";
+        $conn = mysqli_connect($servername, $username, $password, $database);
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        if (isset($_SESSION['CartDataArray'])){
+            $CartDataArray = $_SESSION['CartDataArray'];
+        } else {
+            $CartDataArray = array();
+        }
+        
+        if (count($CartDataArray) === 0) {
+            $html = "<H2 align='Center'> Корзина пуста </H2>";
+            echo $html;
+        }
+        else{
+            $html = "<H2 align='Center'> Корзина </H2>";
+            echo $html;
+        }
+        
+        $_cartData = new CartData();
+        $sql= "SELECT id, name, short_description, price, image FROM product WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $productid);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($_cartData->id, $_cartData->name, $_cartData->short_description, $_cartData->price, $_cartData->image);
+        while ($stmt->fetch()){  
+            array_push($CartDataArray, $_cartData);
+        }
+        $_SESSION['CartDataArray'] = $CartDataArray;
+        $totalprice_products = 0;
+        foreach ($CartDataArray as $_cartData){
+        $totalprice = $_cartData->price * $_cartData->pcs;
+        $html = "<div class='product-cart'>
+                            <div class='product-cart-body'>
+                                <div class='product-cart-photo'>
+                                    <img src='$_cartData->image'>
+                                </div>
+                                <div class='product-cart-details'>
+                                    <div class='product-cart-title'>
+                                        <a> $_cartData->name</a>
+                                    </div>
+                                    <div class='product-cart-description'>
+                                        <a> $_cartData->short_description </a>
+                                    </div>
+                                </div>
+                                <div class='product-cart-pcs'>
+                                    <a>Кол-во:</a><BR>
+                                    <form method='POST' action='../PhpActions/ChangeQuantity.php'>
+                                        <input type='hidden' name='productId' value='$_cartData->id'> </input>
+                                        <input type='number' name='quantity' value='$_cartData->pcs'> </input>
+                                        <input type='submit' value='Подтвердить'> </input>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class='product-cart-price'>
+                                <div class='product-price'>
+                                    <a> Цена за шт.: <BR>$_cartData->price ₽</a>
+                                </div>
+                                <div class='product-price-sum'>
+                                    <a> Общая цена: <BR> $totalprice ₽</a>
+                                </div>
+                            </div>
+            </div>";
+            echo $html;
+            $totalprice_products += $totalprice;
+            
+            }
+            if(isset($_SESSION['CartDataTrue'])) {
+                echo "<p> Общая сумма: $totalprice_products ₽"; 
+            }
+}
+
+
+function SearchResult(?string $string)
+{ 
     $servername = "localhost";
     $database = "shopdns";
     $username = "root";
@@ -202,43 +334,36 @@ function AddToCart(){
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $_cartData = new CartData();
-    $sql= "SELECT id, name, short_description, price, image FROM product WHERE id = ?";
+    $message = $_POST['text']; 
+    $sql = "SELECT id, name, alias, price, image FROM product WHERE name LIKE '%$string%'";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $_POST['id']);
+
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($_cartData->id, $_cartData->name, $_cartData->short_description, $_cartData->price, $_cartData->image);
-    while ($stmt->fetch()){   
-        array_push(global $CartDataArray, $_cartData);
+    $stmt->bind_result($id, $name, $alias, $price, $image);
+    while ($stmt->fetch()) {
+        $html = "<table border='3' cellpadding='10' cellspacing='5' align='center'>
+                            <tr>
+                                    <tr>
+                                        <td colspan='2' align='center'> <img src='$image'  width='100%' ></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='2'> $name </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Цена: $price р.</td>
+                                        <td>
+                                            <div class='product_about'>
+                                                <form action = Product.php method='POST'>
+                                                    <input type='hidden' name='id' value='$id' />
+                                                    <button type='submit' class='back-to-catalog'>Подробнее о товаре</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tr>
+                        </table>";
+        echo $html;
     }
-
-    $html = "<div class='product-cart'>
-                        <div class='product-cart-body'>
-                            <div class='product-cart-photo'>
-                                <img src='http://localhost/Web/Content/Telek.jpg'>
-                            </div>
-                            <div class='product-cart-details'>
-                                <div class='product-cart-title'>
-                                    <a> Test Title </a>
-                                </div>
-                                <div class='product-cart-description'>
-                                    <a> Test Description </a>
-                                </div>
-                            </div>
-                            <div class='product-cart-pcs'>
-                                <a> test 3</a>
-                            </div>
-                        </div>
-                        <div class='product-cart-price'>
-                            <div class='product-price'>
-                                <a> Цена за шт.: <BR>test 4</a>
-                            </div>
-                            <div class='product-price-sum'>
-                                <a> Общая цена: <BR> test 5</a>
-                            </div>
-                        </div>
-        </div>"
-    echo $html;
 }
 ?>

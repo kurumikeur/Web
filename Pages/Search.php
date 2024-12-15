@@ -75,31 +75,10 @@ require_once __DIR__ . "/../PhpActions/init.php";
             </div>
 
             <div id="center">
-                <div class="center_content">
-                    <div class="loginpage-form">
-                        <h2>Вход</h2>
-                        <div class="input-form">
-
-                        <?php flash() ?>
-
-                            <form action="../PhpActions/Authorization.php" method="POST">
-                                    <div class="form-group">
-                                <label for="login">Логин:</label>
-                                <input type="text" id="login" name="login" required>
-                                        <br />
-                                    </div>
-
-                                    <div class="form-group">
-                                <label for="password">Пароль:</label>
-                                <input type="password" id="password" name="password" required>
-                                        <br />
-                                    </div>
-                                    <div class="input-button">
-                                        <button type="submit">Войти</button>
-                                    </div>
-                            </form>
-
-                        </div>
+                <div class="center_content_catalog">
+                    <H2 align="center">Результаты поиска</H2>
+                    <div class="catalog_product">
+                        <?php SearchResult($_POST['text']) ?>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,9 @@
 <?php
 require_once __DIR__ . "/../PhpActions/init.php";
+if (isset($_COOKIE['id'])){
+    $_SESSION['id'] = $_COOKIE['id'];
+    $_SESSION['login'] = $_COOKIE['login'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +30,13 @@ require_once __DIR__ . "/../PhpActions/init.php";
                 </nav>
                 <?php flash() ?>
                 <div class="search">
-                    <form action="" method="get" onsubmit="findText(event)"> 
-                        <input id="search-input" placeholder="Искать..." type="text">
-                        <button onclick="findText()">Поиск</button> 
+                    <form action='Search.php' method="POST"> 
+                        <input id="text" placeholder="Искать..." type="text" name='text'>
+                        <button onclick="location.href = 'Search.php'">Поиск</button> 
                     </form>
                 </div>
-                <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                
+                <?php if((isset($_COOKIE["login"]))) : ?>
                     <div class="login-form">
                         <div class="Button">
                             <div>
@@ -180,7 +185,8 @@ require_once __DIR__ . "/../PhpActions/init.php";
         </div>
 
         <div class="footer">
-            <a id="copyright"> DNS. Все права защищены 2024 ©</a>
+            <a id="copyright"> DNS. Все права защищены 2024 ©</a> <BR>
+            <a href='Confident.pdf' target='_blank' target='_blank'>Политика конфиденциальности </a>
         </div>
 
     </div>

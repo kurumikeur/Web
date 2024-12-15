@@ -1,5 +1,30 @@
 <?php
-require_once __DIR__ . "/../PhpActions/init.php";
+    require_once __DIR__ . "/../PhpActions/init.php";
+
+    // Параметры для подключения
+    $servername = "localhost";
+    $database = "shopdns";
+    $username = "root";
+    $password = "";
+    // Создаем соединение
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    // Проверяем соединение
+
+    if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $_cartData = new CartData();
+    $CartDataArray = $_SESSION['CartDataArray'];
+    foreach ($CartDataArray as $_cartData){
+     $sql = "INSERT INTO orders (productid, name, quantity, login)
+     VALUES (?, ?, ?, ?)";
+     $stmt = $conn->prepare($sql);
+     $stmt->bind_param("ssss", $_cartData->id, $_cartData->name, $_cartData->pcs, $_SESSION['login']);
+     $stmt->execute();
+    }      
+    unset($_SESSION['CartDataArray']);
+    unset($_SESSION['CartDataTrue']);
 ?>
 
 <!DOCTYPE html>
@@ -77,27 +102,9 @@ require_once __DIR__ . "/../PhpActions/init.php";
             <div id="center">
                 <div class="center_content">
                     <div class="loginpage-form">
-                        <h2>Вход</h2>
                         <div class="input-form">
 
-                        <?php flash() ?>
-
-                            <form action="../PhpActions/Authorization.php" method="POST">
-                                    <div class="form-group">
-                                <label for="login">Логин:</label>
-                                <input type="text" id="login" name="login" required>
-                                        <br />
-                                    </div>
-
-                                    <div class="form-group">
-                                <label for="password">Пароль:</label>
-                                <input type="password" id="password" name="password" required>
-                                        <br />
-                                    </div>
-                                    <div class="input-button">
-                                        <button type="submit">Войти</button>
-                                    </div>
-                            </form>
+                            <H2 align='center'> Заказ оформлен</H2>
 
                         </div>
                     </div>

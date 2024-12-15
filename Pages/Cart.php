@@ -1,9 +1,7 @@
 <?php
 require_once __DIR__ . "/../PhpActions/init.php";
 ?>
-
 <!DOCTYPE html>
-
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="Style.css">
@@ -26,9 +24,9 @@ require_once __DIR__ . "/../PhpActions/init.php";
                     </ul>   
                 </nav>
                 <div class="search">
-                    <form action="" method="get" onsubmit="findText(event)"> 
-                        <input id="search-input" placeholder="Искать..." type="text">
-                        <button onclick="findText()">Поиск</button> 
+                    <form action='Search.php' method="POST"> 
+                        <input id="text" placeholder="Искать..." type="text" name='text'>
+                        <button onclick="location.href = 'Search.php'">Поиск</button> 
                     </form>
                 </div>
                 <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
@@ -76,33 +74,20 @@ require_once __DIR__ . "/../PhpActions/init.php";
 
             <div id="center">
                 <div class="center_content">
-                    <H2 align='center'> Корзина </H2>
-                    <div class='product-cart'>
-                        <div class='product-cart-body'>
-                            <div class='product-cart-photo'>
-                                <img src='http://localhost/Web/Content/Telek.jpg'>
-                            </div>
-                            <div class='product-cart-details'>
-                                <div class='product-cart-title'>
-                                    <a> Test Title </a>
-                                </div>
-                                <div class='product-cart-description'>
-                                    <a> Test Description </a>
-                                </div>
-                            </div>
-                            <div class='product-cart-pcs'>
-                                <a> test 3</a>
-                            </div>
-                        </div>
-                        <div class='product-cart-price'>
-                            <div class='product-price'>
-                                <a> Цена за шт.: <BR>test 4</a>
-                            </div>
-                            <div class='product-price-sum'>
-                                <a> Общая цена: <BR> test 5</a>
-                            </div>
-                        </div>
-                    </div>
+                <?php if((isset($_POST['productId'])) and isset($_POST['quantity'])) : ?>
+                    <?php AddToCart($_POST['productId'], $_POST['quantity']) ?>
+                <?php else : ?>
+                    <?php WatchCart() ?>
+                <?php endif; ?>
+
+                <?php if(isset($_SESSION['CartDataTrue'])) : ?>
+                    <form method='POST' action='MakeOrder.php'>
+                        <input type='submit' value='Оформить заказ'></input> 
+                    </form>
+                    <form method='POST' action='ClearCart.php'>
+                        <input type='submit' value='Очистить корзину'></input> 
+                    </form>
+                <?php endif; ?>    
                 </div>
             </div>
 
@@ -117,7 +102,8 @@ require_once __DIR__ . "/../PhpActions/init.php";
         </div>
 
         <div class="footer">
-            <a id="copyright"> DNS. Все права защищены 2024 ©</a>
+            <a id="copyright"> DNS. Все права защищены 2024 ©</a> <BR>
+            <a href='Confident.pdf' target='_blank'>Политика конфиденциальности </a>
         </div>
 
     </div>

@@ -30,11 +30,30 @@ function showSlides(n) {
     if (n < 1) {
         slideIndex = slides.length
     }
-  
+    
     /* Проходим по каждому слайду в цикле for: */
     for (let slide of slides) {
         slide.style.display = "none";
     }
     /* Делаем элемент блочным: */
-    slides[slideIndex - 1].style.display = "block";    
+    slides[slideIndex - 1].style.display = "block"; 
+    
+    /* Обращаемся к элементам с названием класса "item", то есть к картинкам: */
+    let slideredir = document.getElementsByClassName("slider_redir");
+    
+    /* Проверяем количество слайдов: */
+    if (n > slideredir.length) {
+      slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slideredir.length
+    }
+    
+    /* Проходим по каждому слайду в цикле for: */
+    for (let sr of slideredir) {
+        sr.style.pointerEvents = "none";
+    }
+    /* Делаем элемент блочным: */
+    slideredir[slideIndex - 1].style.pointerEvents = "auto";
+    document.cookie="SliderValue=" + (slideIndex) + "; path=../Pages/"; 
 }

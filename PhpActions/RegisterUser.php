@@ -1,14 +1,7 @@
 <?php
 require_once __DIR__ . "/../PhpActions/init.php"; 
 {
-                                // Переменные с формы
-                                $lastname = $_POST['lastname'];
-                                $name = $_POST['name'];
-                                $surname = $_POST['surname'];
-                                $login = $_POST['login'];
                                 $passwordData = $_POST['password'];
-                                $mail = $_POST['mail'];
-                                $phone = $_POST['phone'];
                                 $hashed_password = password_hash($passwordData, PASSWORD_DEFAULT);
                                 
                                 // Параметры для подключения

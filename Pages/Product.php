@@ -26,9 +26,9 @@ require_once __DIR__ . "/../PhpActions/init.php";
                     </ul>   
                 </nav>
                 <div class="search">
-                    <form action="" method="get" onsubmit="findText(event)"> 
-                        <input id="search-input" placeholder="Искать..." type="text">
-                        <button onclick="findText()">Поиск</button> 
+                    <form action='Search.php' method="POST"> 
+                        <input id="text" placeholder="Искать..." type="text" name='text'>
+                        <button onclick="location.href = 'Search.php'">Поиск</button> 
                     </form>
                 </div>
                 <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
@@ -75,7 +75,11 @@ require_once __DIR__ . "/../PhpActions/init.php";
             </div>
 
             <div id="center">
-                <?php MakeCard((int)$_POST['id'])?>
+                <?php if(isset($_POST['id']))
+                    MakeCard((int)$_POST['id']);
+                else
+                    MakeCard((int)$_COOKIE['SliderValue']);
+                ?>
                 <!-- <div class="center_content_catalog">
                     <H2 align="center">Каталог товаров</H2>
                     <div class="catalog_product">
@@ -122,7 +126,8 @@ require_once __DIR__ . "/../PhpActions/init.php";
         </div>
 
         <div class="footer">
-            <a id="copyright"> DNS. Все права защищены 2024 ©</a>
+            <a id="copyright"> DNS. Все права защищены 2024 ©</a> <BR>
+            <a href='Confident.pdf' target='_blank'>Политика конфиденциальности </a>
         </div>
 
     </div>

@@ -26,9 +26,9 @@ require_once __DIR__ . "/../PhpActions/init.php";
                     </ul>   
                 </nav>
                 <div class="search">
-                    <form action="" method="get" onsubmit="findText(event)"> 
-                        <input id="search-input" placeholder="Искать..." type="text">
-                        <button onclick="findText()">Поиск</button> 
+                    <form action='Search.php' method="POST"> 
+                        <input id="text" placeholder="Искать..." type="text" name='text'>
+                        <button onclick="location.href = 'Search.php'">Поиск</button> 
                     </form>
                 </div>
                 <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
@@ -100,7 +100,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         </div> -->
                         <H2 align="center"> Электроника </H2> 
                         <div class="catalog_electronic">
-                        <?php MakeCatalogElectronic(); ?>       
+                        <?php MakeCatalog('Electronic'); ?>       
                         <!-- <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
@@ -168,7 +168,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         </div>
                         <H2 align="center"> Бытовая техника </H2>    
                         <div class="catalog_home">
-                        <?php MakeCatalogHome(); ?>     
+                        <?php MakeCatalog('Home'); ?>     
                         <!-- <table border="3" cellpadding="10" cellspacing="5" align="center">
                             <tr>
                                     <tr>
@@ -248,7 +248,8 @@ require_once __DIR__ . "/../PhpActions/init.php";
         </div>
 
         <div class="footer">
-            <a id="copyright"> DNS. Все права защищены 2024 ©</a>
+            <a id="copyright"> DNS. Все права защищены 2024 ©</a> <BR>
+            <a href='Confident.pdf' target='_blank'>Политика конфиденциальности </a>
         </div>
 
     </div>
