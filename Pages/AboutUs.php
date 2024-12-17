@@ -31,7 +31,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         <button onclick="location.href = 'Search.php'">Поиск</button> 
                     </form>
                 </div>
-                <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                <?php if((isset($_COOKIE["login"]))) : ?>
                     <div class="login-form">
                         <div class="Button">
                             <a> Добро пожаловать, <?php echo $_COOKIE['login'] ?> </a>

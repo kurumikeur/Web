@@ -17,12 +17,14 @@
     $_cartData = new CartData();
     $CartDataArray = $_SESSION['CartDataArray'];
     foreach ($CartDataArray as $_cartData){
-     $sql = "INSERT INTO orders (productid, name, quantity, login)
-     VALUES (?, ?, ?, ?)";
-     $stmt = $conn->prepare($sql);
-     $stmt->bind_param("ssss", $_cartData->id, $_cartData->name, $_cartData->pcs, $_SESSION['login']);
-     $stmt->execute();
-    }      
+        if ($_cartData->pcs != 0) {
+            $sql = "INSERT INTO orders (productid, name, quantity, login)
+            VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssss", $_cartData->id, $_cartData->name, $_cartData->pcs, $_SESSION['login']);
+            $stmt->execute();
+            }
+        }      
     unset($_SESSION['CartDataArray']);
     unset($_SESSION['CartDataTrue']);
 ?>
@@ -56,7 +58,7 @@
                         <button onclick="location.href = 'Search.php'">Поиск</button> 
                     </form>
                 </div>
-                <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                <?php if((isset($_COOKIE["login"]))) : ?>
                     <div class="login-form">
                         <div class="Button">
                             <a> Добро пожаловать, <?php echo $_COOKIE['login'] ?> </a>

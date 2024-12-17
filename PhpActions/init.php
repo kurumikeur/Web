@@ -178,10 +178,9 @@ function AddToCart($productid, $quantity){
         $CartDataArray = $_SESSION['CartDataArray'];
     } else {
         $CartDataArray = array();
-    }
+    } 
+    echo "<H2 align='Center'> Корзина </H2>";
     $_cartData = new CartData();
-    $html = "<H2 align='Center'> Корзина </H2>";
-            echo $html;
     $sql= "SELECT id, name, short_description, price, image FROM product WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $productid);
@@ -201,41 +200,45 @@ function AddToCart($productid, $quantity){
     if (!$flag) array_push($CartDataArray, $_cartData);
     $_SESSION['CartDataArray'] = $CartDataArray;
     $totalprice_products = 0;
+    $_SESSION['flag'] = false;
     foreach ($CartDataArray as $_cartData){
-    $totalprice = $_cartData->price * $_cartData->pcs;
-    $html = "<div class='product-cart'>
-                        <div class='product-cart-body'>
-                            <div class='product-cart-photo'>
-                                <img src='$_cartData->image'>
-                            </div>
-                            <div class='product-cart-details'>
-                                <div class='product-cart-title'>
-                                    <a> $_cartData->name</a>
+        if($_cartData->pcs > 0){ 
+            $totalprice = $_cartData->price * $_cartData->pcs;
+            $html = "<div class='product-cart'>
+                                <div class='product-cart-body'>
+                                    <div class='product-cart-photo'>
+                                        <img src='$_cartData->image'>
+                                    </div>
+                                    <div class='product-cart-details'>
+                                        <div class='product-cart-title'>
+                                            <a> $_cartData->name</a>
+                                        </div>
+                                        <div class='product-cart-description'>
+                                            <a> $_cartData->short_description </a>
+                                        </div>
+                                    </div>
+                                    <div class='product-cart-pcs'>
+                                            <a>Кол-во:</a><BR>
+                                            <form method='POST' action='../PhpActions/ChangeQuantity.php'>
+                                                <input type='hidden' name='productId' value='$_cartData->id'>
+                                                <input type='number' name='quantity' value='$_cartData->pcs'>
+                                                <input type='submit' value='Подтвердить'>
+                                            </form>
+                                    </div>
                                 </div>
-                                <div class='product-cart-description'>
-                                    <a> $_cartData->short_description </a>
+                                <div class='product-cart-price'>
+                                    <div class='product-price'>
+                                        <a> Цена за шт.: <BR>$_cartData->price ₽</a>
+                                    </div>
+                                    <div class='product-price-sum'>
+                                        <a> Общая цена: <BR> $totalprice ₽</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class='product-cart-pcs'>
-                                    <a>Кол-во:</a><BR>
-                                    <form method='POST' action='../PhpActions/ChangeQuantity.php'>
-                                        <input type='hidden' name='productId' value='$_cartData->id'>
-                                        <input type='number' name='quantity' value='$_cartData->pcs'>
-                                        <input type='submit' value='Подтвердить'>
-                                    </form>
-                            </div>
-                        </div>
-                        <div class='product-cart-price'>
-                            <div class='product-price'>
-                                <a> Цена за шт.: <BR>$_cartData->price ₽</a>
-                            </div>
-                            <div class='product-price-sum'>
-                                <a> Общая цена: <BR> $totalprice ₽</a>
-                            </div>
-                        </div>
-        </div>";
-    echo $html;
-    $totalprice_products += $totalprice;
+                </div>";
+            echo $html;
+            $totalprice_products += $totalprice;
+            $_SESSION['flag'] = true;
+        }
     }
     if(isset($_SESSION['CartDataTrue'])) {
         echo "<p> Общая сумма: $totalprice_products ₽"; 
@@ -258,16 +261,8 @@ function WatchCart(){
         } else {
             $CartDataArray = array();
         }
-        
-        if (count($CartDataArray) === 0) {
-            $html = "<H2 align='Center'> Корзина пуста </H2>";
-            echo $html;
-        }
-        else{
-            $html = "<H2 align='Center'> Корзина </H2>";
-            echo $html;
-        }
-        
+        echo "<H2 align='Center'> Корзина </H2>";
+        $_SESSION['flag'] = false;
         $_cartData = new CartData();
         $sql= "SELECT id, name, short_description, price, image FROM product WHERE id = ?";
         $stmt = $conn->prepare($sql);
@@ -279,47 +274,53 @@ function WatchCart(){
             array_push($CartDataArray, $_cartData);
         }
         $_SESSION['CartDataArray'] = $CartDataArray;
+
         $totalprice_products = 0;
         foreach ($CartDataArray as $_cartData){
-        $totalprice = $_cartData->price * $_cartData->pcs;
-        $html = "<div class='product-cart'>
-                            <div class='product-cart-body'>
-                                <div class='product-cart-photo'>
-                                    <img src='$_cartData->image'>
-                                </div>
-                                <div class='product-cart-details'>
-                                    <div class='product-cart-title'>
-                                        <a> $_cartData->name</a>
+            if($_cartData->pcs > 0){
+                $totalprice = $_cartData->price * $_cartData->pcs;
+                $html = "<div class='product-cart'>
+                                    <div class='product-cart-body'>
+                                        <div class='product-cart-photo'>
+                                            <img src='$_cartData->image'>
+                                        </div>
+                                        <div class='product-cart-details'>
+                                            <div class='product-cart-title'>
+                                                <a> $_cartData->name</a>
+                                            </div>
+                                            <div class='product-cart-description'>
+                                                <a> $_cartData->short_description </a>
+                                            </div>
+                                        </div>
+                                        <div class='product-cart-pcs'>
+                                            <a>Кол-во:</a><BR>
+                                            <form method='POST' action='../PhpActions/ChangeQuantity.php'>
+                                                <input type='hidden' name='productId' value='$_cartData->id'> </input>
+                                                <input type='number' name='quantity' value='$_cartData->pcs'> </input>
+                                                <input type='submit' value='Подтвердить'> </input>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class='product-cart-description'>
-                                        <a> $_cartData->short_description </a>
+                                    <div class='product-cart-price'>
+                                        <div class='product-price'>
+                                            <a> Цена за шт.: <BR>$_cartData->price ₽</a>
+                                        </div>
+                                        <div class='product-price-sum'>
+                                            <a> Общая цена: <BR> $totalprice ₽</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class='product-cart-pcs'>
-                                    <a>Кол-во:</a><BR>
-                                    <form method='POST' action='../PhpActions/ChangeQuantity.php'>
-                                        <input type='hidden' name='productId' value='$_cartData->id'> </input>
-                                        <input type='number' name='quantity' value='$_cartData->pcs'> </input>
-                                        <input type='submit' value='Подтвердить'> </input>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class='product-cart-price'>
-                                <div class='product-price'>
-                                    <a> Цена за шт.: <BR>$_cartData->price ₽</a>
-                                </div>
-                                <div class='product-price-sum'>
-                                    <a> Общая цена: <BR> $totalprice ₽</a>
-                                </div>
-                            </div>
-            </div>";
-            echo $html;
-            $totalprice_products += $totalprice;
-            
+                    </div>";
+                    echo $html;
+                    $totalprice_products += $totalprice;
+                    $_SESSION['flag'] = true;
             }
-            if(isset($_SESSION['CartDataTrue'])) {
+        }
+            if(isset($_SESSION['CartDataTrue']) and $_SESSION['flag'] === true) {
                 echo "<p> Общая сумма: $totalprice_products ₽"; 
             }
+        if (!isset($_SESSION['CartDataArray']) or !($_SESSION['flag'] === true)){
+            echo "<a> Корзина пуста </a>";
+        }  
 }
 
 

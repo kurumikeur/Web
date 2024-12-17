@@ -31,7 +31,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         <button onclick="location.href = 'Search.php'">Поиск</button> 
                     </form>
                 </div>
-                <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                <?php if((isset($_COOKIE["login"]))) : ?>
                     <div class="login-form">
                         <div class="Button">
                             <a> Добро пожаловать, <?php echo $_COOKIE['login'] ?> </a>
@@ -82,7 +82,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         <div class="aboutus_text"><a>Номер для Москвы и МО: 8-499-704-46-40 (c 03:00 до 22:00) </a> </div>
                         <div class="abouts_map"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af325edb009872e19a90412ccb49f2ebc27d564e0d1cc19f86980e77b27bb7100&amp;width=504&amp;height=436&amp;lang=ru_RU&amp;scroll=true"></script> </div>
                         
-                        <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                        <?php if((isset($_COOKIE["login"]))) : ?>
                             <form action = "Feedback.php">
                             <div class="aboutus_button"> <input type="submit" value="Обратная связь">      </div>
                         </form>

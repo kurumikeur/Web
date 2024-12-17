@@ -29,7 +29,7 @@ require_once __DIR__ . "/../PhpActions/init.php";
                         <button onclick="location.href = 'Search.php'">Поиск</button> 
                     </form>
                 </div>
-                <?php if((isset($_SESSION['loggedin'])) or isset($_COOKIE["login"])) : ?>
+                <?php if((isset($_COOKIE["login"]))) : ?>
                     <div class="login-form">
                         <div class="Button">
                             <a> Добро пожаловать, <?php echo $_COOKIE['login'] ?> </a>
@@ -74,13 +74,14 @@ require_once __DIR__ . "/../PhpActions/init.php";
 
             <div id="center">
                 <div class="center_content">
+    
                 <?php if((isset($_POST['productId'])) and isset($_POST['quantity'])) : ?>
                     <?php AddToCart($_POST['productId'], $_POST['quantity']) ?>
                 <?php else : ?>
                     <?php WatchCart() ?>
                 <?php endif; ?>
-
-                <?php if(isset($_SESSION['CartDataTrue'])) : ?>
+                
+                <?php if(isset($_SESSION['CartDataTrue']) and ($_SESSION['flag'] === true)): ?>
                     <form method='POST' action='MakeOrder.php'>
                         <input type='submit' value='Оформить заказ'></input> 
                     </form>
