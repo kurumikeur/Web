@@ -120,8 +120,9 @@ if (isset($_COOKIE['id'])){
                                     <!-- Кнопки-стрелочки -->
                                     <a class="previous" onclick="previousSlide()">&#10094;</a>
                                     <a class="next" onclick="nextSlide()">&#10095;</a>
-                                    </div>
+                                
                                     <script src="http://localhost/Web/Scripts/Slider.js">ShowSlides(1);</script>
+                                </div>
                                 </div>
                             <div>
 
